@@ -1,5 +1,7 @@
 # Active Review
   Active Review is a simple rails app that shows a review of a movie
+![ERD](./docs/movies.png)
+![ERD](./docs/reviews.png)
 
 ## Target audience
 This application is intended for:
@@ -61,8 +63,8 @@ Note: `main` is the primary branch for production-ready code
 bundle exec rspec spec/
 
 # Output
-Finished in 0.29337 seconds (files took 0.78219 seconds to load)
-37 examples, 0 failures, 2 pending
+Finished in 0.43093 seconds (files took 0.7171 seconds to load)
+45 examples, 0 failures, 2 pending
 ```
 
 
@@ -100,3 +102,42 @@ Finished in 0.29337 seconds (files took 0.78219 seconds to load)
 - **Movies** has many **Reviews**.
 - **Reviews** belongs to **Movies**.
 
+
+## Files to review
+
+- [Rake task to import data](https://github.com/majedbojan/active-reviews/blob/main/lib/tasks/one_time_scripts/import_csv.rake)
+- [app/models/movie.rb](https://github.com/majedbojan/active-reviews/blob/main/app/models/movie.rb)
+- [app/models/review.rb](https://github.com/majedbojan/active-reviews/blob/main/app/models/review.rb)
+- [movies_controller.rb](https://github.com/majedbojan/active-reviews/blob/main/app/controllers/movies_controller.rb)
+- [reviews_controller.rb](https://github.com/majedbojan/active-reviews/blob/main/app/controllers/reviews_controller.rb)
+- [spec/models/movie_spec.rb](https://github.com/majedbojan/active-reviews/blob/main/spec/models/movie_spec.rb)
+- [spec/models/review_spec.rb](https://github.com/majedbojan/active-reviews/blob/main/spec/models/review_spec.rb)
+- [db/migrate/20240722103014_create_movies.rb](https://github.com/majedbojan/active-reviews/blob/main/db/migrate/20240722103014_create_movies.rb)
+- [db/migrate/20240722103015_create_reviews.rb](https://github.com/majedbojan/active-reviews/blob/main/db/migrate/20240722103015_create_reviews.rb)
+
+
+# API Request Examples
+
+
+## 1. Get List of Movies
+### Fetch a list of all movies:
+
+```powershell
+curl -X GET "http://localhost:3000/api/v1/movies"
+```
+### Filter movies by actor:
+
+```powershell
+curl -X GET "http://localhost:3000/api/v1/movies?actor=Example%20Actor"
+```
+## 2. Get List of Reviews
+
+### Fetch a list of all reviews:
+```powershell
+curl -X GET "http://localhost:3000/api/v1/reviews"
+```
+
+### Get Review Details
+```powershell
+curl -X GET "http://localhost:3000/api/v1/reviews/REVIEW_ID"
+```
