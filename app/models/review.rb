@@ -20,5 +20,19 @@
 #  fk_rails_...  (movie_id => movies.id)
 #
 class Review < ApplicationRecord
+
+  # Associations
   belongs_to :movie
+
+  # Validations
+  validates :review,   presence: true
+  validates :user,     presence: true
+  validates :movie_id, presence: true
+  validates :stars,    presence: true, numericality: {
+                                                        only_integer: true,
+                                                        greater_than_or_equal_to: 1,
+                                                        less_than_or_equal_to: 5
+                                                     }
+
+  validates :user, uniqueness: { scope: :movie_id, message: "can only review a movie once" }
 end

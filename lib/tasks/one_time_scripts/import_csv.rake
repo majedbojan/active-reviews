@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 namespace :import do
   desc "Import movies and reviews from CSV files"

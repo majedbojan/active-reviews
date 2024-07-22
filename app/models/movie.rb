@@ -18,8 +18,10 @@
 #  index_movies_on_actor  (actor)
 #
 class Movie < ApplicationRecord
+  # Associations
   has_many :reviews, dependent: :destroy
 
+  # Validations
   validates :name,             presence: true, length: { maximum: 255 }, uniqueness: true
   validates :description,      presence: true
   validates :director,         presence: true, length: { maximum: 255 }
