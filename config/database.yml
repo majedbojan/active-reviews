@@ -1,0 +1,19 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: active_importer_development
+
+test:
+  <<: *default
+  database: active_importer_test
+
+production:
+  <<: *default
+  database: active_importer_production
+  username: active_importer
+  password: <%= ENV["ACTIVE_IMPORTER_DATABASE_PASSWORD"] %>
