@@ -21,5 +21,9 @@
 #
 FactoryBot.define do
   factory :review do
+    review { Faker::Lorem.paragraph }
+    stars  { Faker::Number.between(from: 1, to: 5) }
+    user   { Faker::Name.name }
+    association :movie
   end
 end

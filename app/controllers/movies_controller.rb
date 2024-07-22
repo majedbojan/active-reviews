@@ -1,9 +1,31 @@
 class MoviesController < ApplicationController
   def index
-    if params[:actor].present?
-      @movies = Movie.where("actor ILIKE ?", "%#{params[:actor]}%")
-    else
-      @movies = Movie.left_joins(:reviews).group(:id).order("AVG(reviews.stars) DESC")
+    @movies = fetch_movies
+  end
+
+  private
+
+  def fetch_movies
+    query = base_query
+
+    if actor_filter_present?
+      query = query.where("actor ILIKE ?", "%#{sanitize_actor(params[:actor])}%")
     end
+
+    query
+  end
+
+  def base_query
+    Movie.left_joins(:reviews)
+         .group(:id)
+         .order("AVG(reviews.stars) DESC")
+  end
+
+  def actor_filter_present?
+    params[:actor].present?
+  end
+
+  def sanitize_actor(actor)
+    actor.strip.gsub(/[^a-zA-Z0-9\s]/, "")
   end
 end

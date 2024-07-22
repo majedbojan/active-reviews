@@ -19,5 +19,12 @@
 #
 FactoryBot.define do
   factory :movie do
+    name { Faker::Movie.title }
+    description { Faker::Lorem.paragraph }
+    director { Faker::Name.name }
+    actor { Faker::Name.name }
+    filming_location { Faker::Address.city }
+    country { Faker::Address.country }
+    year { Faker::Number.between(from: 1900, to: Date.current.year) }
   end
 end

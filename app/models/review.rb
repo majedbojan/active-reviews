@@ -20,7 +20,6 @@
 #  fk_rails_...  (movie_id => movies.id)
 #
 class Review < ApplicationRecord
-
   # Associations
   belongs_to :movie
 
