@@ -1,6 +1,8 @@
 # Active Review
   Active Review is a simple rails app that shows a review of a movie
+## Movies
 ![ERD](./docs/movies.png)
+## Reviews
 ![ERD](./docs/reviews.png)
 
 ## Target audience
