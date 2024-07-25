@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "rm -f tmp/pids/server.pid && rails server -b '0.0.0.0'"
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: postgres://myuser:mypassword@db:5432/mydatabase
+    ports:
+      - "3000:3000"
+    volumes:
+      - ".:/app"
+      - "bundle:/usr/local/bundle"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+volumes:
+  postgres_data:
+  bundle:
+
+networks:
+  app-network:
+    driver: bridge

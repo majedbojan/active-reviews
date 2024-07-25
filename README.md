@@ -20,7 +20,6 @@ This application is intended for:
 - PostgreSQL
 - Node
 
-
 ### Setup
 
 To start development, clone the project
@@ -30,26 +29,12 @@ $ git clone git@github.com:majedbojan/active-reviews.git
 $ cd active-reviews
 ```
 
-Then run
-
-```powershell
-bundle install
-```
-### DB
-
-```powershell
-$ rails db:create && rails db:migrate
-```
-
-### Seed
-
-```powershell
-rake import:movies
-```
+#### 1. [Using Docker](https://github.com/majedbojan/active-reviews/blob/main/docs/setup-local-docker.md)
+#### 2. [Setup localy](https://github.com/majedbojan/active-reviews/blob/main/docs/setup-local-env.md)
 
 ### Branches
 
-Note: `main` is the primary branch for production-ready code
+> Note: `main` is the primary branch for production-ready code
 
 
 ### Environemtens
